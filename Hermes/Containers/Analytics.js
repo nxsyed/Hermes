@@ -21,19 +21,17 @@ export default class Analytics extends React.Component {
     }
 
     componentWillMount() {
-        const { channel } = this.props.navigation.state.params;
         this.pubnub.subscribe({
-            channels: channel,
+            channels: [this.props.navigation.state.params],
             withPresence: true
         });
 
         this.pubnub.addListener({
             status: function(statusEvent) {
             },
-            message: function(message) {
-                console.log(message);
+            message: (message) => {
                 this.setState({ 
-                    data: message 
+                    data: message.message
                   });
             },
             presence: function(presenceEvent) {
@@ -41,12 +39,18 @@ export default class Analytics extends React.Component {
         })
     }
 
+    componentWillUnmount() {
+        this.pubnub.unsubscribe({
+            channels: [this.props.navigation.state.params]
+        })
+    }
+
     render() {
-        const { channel } = this.props.navigation.state.params;
-        console.log(channel);
+        const channel = this.props.navigation.state.params;
+        console.log(this.state.data);
         return (
             <Text> 
-                { this.channel }    
+                { channel }    
              </Text> 
         );
     }
