@@ -6,15 +6,13 @@ from pubnub.callbacks import SubscribeCallback
 from pubnub.enums import PNStatusCategory
 from pubnub.pnconfiguration import PNConfiguration
 from pubnub.pubnub import PubNub
-from gpiozero import MotionSensor
 
-pir = MotionSensor(4) # IO number on raspberry pi
 hostname = os.uname()[1]
 
 pnconfig = PNConfiguration()
 
-pnconfig.publish_key = 'insert_your_pub_key'
-pnconfig.subscribe_key = 'insert_your_sub_key'
+pnconfig.publish_key = 'pub-c-7805ed36-f5af-48a4-9574-224a779d3416'
+pnconfig.subscribe_key = 'sub-c-2583d912-4f1e-11e8-9796-063929a21258'
  
 pubnub = PubNub(pnconfig)
  
@@ -39,11 +37,10 @@ class MySubscribeCallback(SubscribeCallback):
         elif status.category == PNStatusCategory.PNConnectedCategory:
             while True:
                 temperature = random.randint(20,23) # mimicking temperature data 
-                pubnub.publish().channel_group('channelName').channel("awesomeChannel").message(
+                pubnub.publish().channel(hostname).message(
                     {
                         'DeviceName': hostname,
-                        'Temperature': random_num,
-                        'Motion Detected': pir.motion_detected
+                        'Temperature': temperature,
                     }
                 ).async(my_publish_callback)
         elif status.category == PNStatusCategory.PNReconnectedCategory:
@@ -57,6 +54,9 @@ class MySubscribeCallback(SubscribeCallback):
     def message(self, pubnub, message):
         print(message.message)
  
- 
+pubnub.add_channel_to_channel_group().\
+    channels([hostname]).\
+    channel_group('parcel').\
+    sync()
 pubnub.add_listener(MySubscribeCallback())
-pubnub.subscribe().channels('channelName').execute()
+pubnub.subscribe().channels(hostname).execute()

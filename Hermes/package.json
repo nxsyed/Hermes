@@ -1,0 +1,35 @@
+{
+  "name": "Hermes",
+  "version": "0.1.0",
+  "private": true,
+  "devDependencies": {
+    "react-native-scripts": "1.14.0",
+    "jest-expo": "~27.0.0",
+    "react-test-renderer": "16.3.1"
+  },
+  "main": "./node_modules/react-native-scripts/build/bin/crna-entry.js",
+  "scripts": {
+    "start": "react-native-scripts start",
+    "eject": "react-native-scripts eject",
+    "android": "react-native-scripts android",
+    "ios": "react-native-scripts ios",
+    "test": "jest"
+  },
+  "jest": {
+    "preset": "jest-expo"
+  },
+  "dependencies": {
+    "expo": "^27.0.1",
+    "prop-types": "^15.6.1",
+    "pubnub": "^4.20.3",
+    "pubnub-react": "^1.2.0",
+    "react": "16.3.1",
+    "react-helmet": "^5.2.0",
+    "react-native": "~0.55.2",
+    "react-native-elements": "^0.19.1",
+    "react-native-linear-gradient": "^2.4.0",
+    "react-navigation": "^2.0.0",
+    "styled-components": "^3.2.6",
+    "watchman": "^1.0.0"
+  }
+}
