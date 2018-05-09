@@ -13,6 +13,9 @@ pnconfig = PNConfiguration()
 
 pnconfig.publish_key = 'pub-c-7805ed36-f5af-48a4-9574-224a779d3416'
 pnconfig.subscribe_key = 'sub-c-2583d912-4f1e-11e8-9796-063929a21258'
+
+#pnconfig.publish_key = 'insert_your_pub_key'
+#pnconfig.subscribe_key = 'insert_your_sub_key'
  
 pubnub = PubNub(pnconfig)
  
@@ -41,6 +44,7 @@ class MySubscribeCallback(SubscribeCallback):
                     {
                         'DeviceName': hostname,
                         'Temperature': temperature,
+                        'Motion Detected': pir.motion_detected
                     }
                 ).async(my_publish_callback)
         elif status.category == PNStatusCategory.PNReconnectedCategory:
@@ -53,10 +57,11 @@ class MySubscribeCallback(SubscribeCallback):
  
     def message(self, pubnub, message):
         print(message.message)
- 
+        
 pubnub.add_channel_to_channel_group().\
     channels([hostname]).\
     channel_group('parcel').\
     sync()
+
 pubnub.add_listener(MySubscribeCallback())
-pubnub.subscribe().channels(hostname).execute()
+pubnub.subscribe().channels('awesomeChannel').execute()
