@@ -55,7 +55,9 @@ componentWillMount() {
 
   render() {
     return (
-        <ScrollView>
+      <View style={{flex:1}}>
+        <ScrollView
+        style={{backgroundColor:'#fff'}}>
           <List containerStyle={{marginBottom: 20}}>
             {
               this.state.channels.map((channel, i) => (
@@ -69,7 +71,7 @@ componentWillMount() {
                   <Button
                     onPress={ () => this.props.navigation.navigate('Analytics', channel) }
                     icon={{name: 'code'}}
-                    backgroundColor='#03A9F4'
+                    backgroundColor='#D32F2F'
                     buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0}}
                     title='View More' />
               </Card>
@@ -77,6 +79,7 @@ componentWillMount() {
             }
           </List>
         </ScrollView>
+      </View>
     );
   }
 }

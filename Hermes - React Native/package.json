@@ -27,7 +27,9 @@
     "react-helmet": "^5.2.0",
     "react-native": "~0.55.2",
     "react-native-elements": "^0.19.1",
+    "react-native-highcharts": "^1.0.2",
     "react-native-linear-gradient": "^2.4.0",
+    "react-native-svg": "^6.3.1",
     "react-navigation": "^2.0.0",
     "styled-components": "^3.2.6",
     "watchman": "^1.0.0"

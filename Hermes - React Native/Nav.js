@@ -11,13 +11,21 @@ export default Nav = createStackNavigator(
     Home: { 
       screen: Home, 
       navigationOptions: ({ navigation }) => ({
-        title: 'Available Devices',
+        title: 'Available Devices', 
+        headerTintColor: '#fff',
+        headerStyle: {
+          backgroundColor: '#D32F2F',
+        },
       }),
     },
     Analytics: { 
       screen: Analytics,
       navigationOptions: ({ navigation }) => ({
-        title: `${navigation.state.params} data`,
+        title: `${ navigation.state.params } data`,
+        headerTintColor: '#fff',
+        headerStyle: {
+          backgroundColor: '#D32F2F',
+        },
       })
     },
   },
