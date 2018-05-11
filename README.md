@@ -9,7 +9,7 @@
 #### Python
 Step 1: Install Python
 
-    $ brew instal
+    $ brew install
 Step 2: Install pip
 
 	$ easy_install pip
